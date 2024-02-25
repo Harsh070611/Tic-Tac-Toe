@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>X/O</title>
+</head>
+<body bgcolor = black text="white" scroll="no" style="overflow: hidden">
+	<style type="text/css">
+		button{
+			height: 100px;
+			width: 100px;
+			background-color: yellow;
+		}
+		button:hover{
+			background-color: lightyellow;
+		}
+		table{
+			position:relative;
+			bottom: 325px;
+			left: -100px;
+		}
+		.t1{
+			position:relative;
+			top:-4px;
+			left:911px;
+		}
+		.btn{
+			width: 300px;
+			height: 60px;
+		
+		}
+		.h2s{
+			position: relative;
+			bottom: 260px;
+		}
+		.p1s{
+			position: relative;
+			left:220px;
+			bottom: 110px;
+		}
+		.div1{
+			background-color: purple;
+			width: 650px;
+			height:85px;
+			position: relative;
+			left:578px;
+			top:5px;
+		}
+		.h2s1{
+			position: relative;
+			top: 20px;
+			right:-30px;
+		}
+		.h2s2{
+			position: relative;
+			top: 30px;
+			right:-30px;
+		}
+		.oops{
+			width: 500px;
+			height: 250px;
+			background-color: white;
+			position: relative;
+			bottom: 630px;
+			left: 50px;
+			display: none;
+		}
+		.yes{
+			background-color: yellow;
+			height: 40px;
+			width: 235px;
+			position: relative;
+			bottom:-44px;
+			right: -30px;
+		}
+		.No{
+			background-color: yellow;
+			height: 40px;
+			width: 235px;
+			position: relative;
+			right: 230px;
+			top: 4px;
+			
+		}
+		.oopshap{
+			width: 500px;
+			height: 250px;
+			background-color: white;
+			position: relative;
+			bottom: 630px;
+			left: 50px;
+			display: none;
+		}
+
+	</style>
+	<h1 align="center"><font size = 8 color = white><u># <b>Tic Toe Game</b></u></font></h1><br>
+	<center>
+		<h2 class = h2s1><font size = 7><b>Points</b></font></h2>
+	</center>
+	<div class = div1><h1 class = h2s2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPlayer 1:&nbsp<span id = p11>0</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Player 2:&nbsp<span id =  p22>0</span></h1></div>	
+	<br><table border="5" bordercolor = "purple" cellpadding="3" class = t1>
+		<tr>
+			<td><h2><font color = red>Player 1 : </font><b>X</b></h2></td>
+		 <td><h2><font color = blue>&nbsp&nbsp Player 2 : </font><b>O</b></font></h2></td></tr>
+		<tr>
+		<td><h2 align = "left"><font color = "cyan"><b>Whose Turn:&nbsp</b></font></h2></td>
+		<td><h2 align = "left" id = "turn"><font color = white>Player 1</font></h2></td>
+		</tr>
+		<tr>
+			<td><h2 align = "left"><font color = "cyan"><b>WINNER:&nbsp</b></font></h2></td>
+			<td><h2 align = "left"><b><p id =res><font color = white>To Be Decided</font></p></b></h2></td>
+
+		</tr>
+		<td colspan="2"><button  onclick="replay()" class="btn"><font color = red size =5><b>REPLAY</b></font></button></td>
+	</table>
+	<center><table bgcolor="white" bordercolor = "purple">
+		<tr>
+			<td><button height="70px" width = "80px" id  = "box1" onclick="f1()"></button></td>
+			<td><button height="70px" width = "80px" id  = "box2" onclick="f2()"></button></td>
+			<td><button height="70px" width = "80px" id  = "box3" onclick="f3()"></button></td>
+
+		</tr>
+		<tr>
+			<td><button height="70px" id ="box4" onclick="f4()"></button></td>
+			<td><button height="70px" id ="box5" onclick="f5()"></button></td>
+			<td><button height="70px" id ="box6" onclick="f6()"></button></td>
+
+		</tr>
+		<tr>
+			<td><button height="70px" id ="box7" onclick="f7()"></button></td>
+			<td><button height="70px" id ="box8" onclick="f8()"></button></td>
+			<td><button height="70px" id ="box9" onclick="f9()"></button></td>
+		</tr>
+	</table>
+	<div class="oops" id = "oopss"><font color="black" size="6" style="font-family: cursive;"><b>OOPS! YOU LOST</b><br>
+		<img src="emoji.jpg" height="80%" width="40%" align="left" style="position: relative;bottom: 8px;"></font><br><font color="black" size="6">Do You want to Play&nbsp&nbsp&nbsp Again?</font><button class="yes" onclick="replay()"><font color="black" size="4">Yes</font></button>
+		<button class="No" onclick="no()"><font color="black" size="4">No</font></button>
+	</div>
+	<div class="oopshap" id = "oopsshappy"><font color="black" size="6" style="font-family: cursive;"><b>WELL DONE!! YOU WIN!!</b><br>
+		<img src ="emojihappy.jpeg" height="65%" width="40%" align="left" style="position: relative;bottom: 8px;"></font><br><font color="black" size="6">Do You want to Play&nbsp&nbsp&nbsp Again?</font><button class="yes" onclick="replay()"><font color="black" size="4">Yes</font></button>
+		<button class="No" onclick="no()"><font color="black" size="4">No</font></button>
+	</div>
+
+	
+
+
+	<script type="text/javascript">
+		var j = 0;
+		var k = 0;
+		var decider = 0;
+		var i = 0;
+		function f1(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+
+			}
+			document.getElementById('box1').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box1').value =  set;
+			i++;
+			res()
+			
+		}
+
+		function f2(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				console.log("apple")
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box2').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box2').value =  set;
+			i++;
+			res()
+		
+		}
+
+
+		function f3(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box3').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box3').value =  set;
+			i++;
+			res()
+		
+		}
+
+
+		function f4(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+			}
+			document.getElementById('box4').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box4').value =  set;
+			i++;
+			res()
+		
+		}
+
+		function f5(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box5').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box5').value =  set;
+			i++;
+			res()
+		
+		}
+
+		function f6(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box6').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box6').value =  set;
+			i++;
+			res()
+		
+		}
+
+
+		function f7(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box7').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box7').value =  set;
+			i++;
+			res()
+		
+		}
+
+
+		function f8(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box8').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box8').value =  set;
+			i++;
+			res()
+		
+		}
+
+	
+
+		function f9(){
+			if (decider === 0){
+				var set = "X";
+				decider++;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 2";
+				
+			}
+			else{
+				var set = "O";
+				decider--;
+				document.getElementById("turn").innerHTML = "<font color = white>"+"Player 1";
+				
+			}
+			document.getElementById('box9').innerHTML = "<font size = 7>"+"<b>"+ set;
+			document.getElementById('box9').value =  set;
+			i++;
+			res()
+			
+		
+		}
+		function res(){
+			var b1 = document.getElementById("box1").value ;
+			var b2 = document.getElementById("box2").value ;
+			var b3 = document.getElementById("box3").value ;
+			var b4 = document.getElementById("box4").value ;
+			var b5 = document.getElementById("box5").value ;
+			var b6 = document.getElementById("box6").value ;
+			var b7 = document.getElementById("box7").value ;
+			var b8 = document.getElementById("box8").value ;
+			var b9 = document.getElementById("box9").value ;
+			
+			if(b1 === "X" && b5 === "X" && b9 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box1").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box9").style.background='#00ff00';
+				j++;
+				console.log(j)
+				document.getElementById("p11").innerHTML = "<font color = white>" + j;
+				document.getElementById("oopsshappy").style.display = "block";
+
+
+			}
+			else if(b1 === "O" && b5 === "O" && b9 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box1").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box9").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>"+k;
+				document.getElementById("oopss").style.display = "block";
+			}
+			else if(b2 === "X" && b5 === "X" && b8 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box2").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box8").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = "<font color = white>"+j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+
+			else if(b2 === "O" && b5 === "O" && b8 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box2").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box8").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>"+k;
+				document.getElementById("oopss").style.display = "block";
+
+			}
+
+			else if(b1 === "X" && b2 === "X" && b3 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box1").style.background='#00ff00';
+				document.getElementById("box2").style.background='#00ff00';
+				document.getElementById("box3").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = "<font color = black>"+j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+			else if(b1 === "O" && b2 === "O" && b3 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box1").style.background='#00ff00';
+				document.getElementById("box2").style.background='#00ff00';
+				document.getElementById("box3").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>" + k;
+
+			}
+
+			else if(b1 === "X" && b4 === "X" && b7 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box1").style.background='#00ff00';
+				document.getElementById("box4").style.background='#00ff00';
+				document.getElementById("box7").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = "<font color = black>"+j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+			else if(b1 === "O" && b4 === "O" && b7 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box1").style.background='#00ff00';
+				document.getElementById("box4").style.background='#00ff00';
+				document.getElementById("box7").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>"+k;
+				document.getElementById("oopss").style.display = "block";
+
+			}
+			else if(b3 === "X" && b6 === "X" && b9 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box3").style.background='#00ff00';
+				document.getElementById("box6").style.background='#00ff00';
+				document.getElementById("box9").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+			else if(b3 === "O" && b6 === "O" && b9 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box3").style.background='#00ff00';
+				document.getElementById("box6").style.background='#00ff00';
+				document.getElementById("box9").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>"+ k;
+				document.getElementById("oopss").style.display = "block";
+			}
+			else if(b4 === "X" && b5 === "X" && b6 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box4").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box6").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+			else if(b4 === "O" && b5 === "O" && b6 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box4").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box6").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = k;
+				document.getElementById("oopss").style.display = "block";
+			}
+
+			else if(b7 === "X" && b8 === "X" && b9 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box7").style.background='#00ff00';
+				document.getElementById("box8").style.background='#00ff00';
+				document.getElementById("box9").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = "<font color = black>"+j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+
+			else if(b7 === "O" && b8 === "O" && b9 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box7").style.background='#00ff00';
+				document.getElementById("box8").style.background='#00ff00';
+				document.getElementById("box9").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>"+k;
+				document.getElementById("oopss").style.display = "block";
+			}
+
+			else if(b7 === "X" && b3 === "X" && b5 === "X"){
+				document.getElementById("res").innerHTML = "PLAYER 1";
+				document.getElementById("box7").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box3").style.background='#00ff00';
+				j++;
+				document.getElementById("p11").innerHTML = "<font color = black>"+j;
+				document.getElementById("oopsshappy").style.display = "block";
+			}
+
+			else if(b7 === "O" && b3 === "O" && b5 === "O"){
+				document.getElementById("res").innerHTML = "PLAYER 2";
+				document.getElementById("box7").style.background='#00ff00';
+				document.getElementById("box5").style.background='#00ff00';
+				document.getElementById("box3").style.background='#00ff00';
+				k++;
+				document.getElementById("p22").innerHTML = "<font color = black>"+k;
+				document.getElementById("oopss").style.display = "block";
+			}
+
+			else if(i < 9){
+				document.getElementById("res").innerHTML = "To Be Decided";
+
+			}
+
+			else{
+				document.getElementById("res").innerHTML = "Match Tied";
+			}
+			
+
+			
+		}
+		function replay() {
+			document.getElementById("oopss").style.display = "none";
+			document.getElementById("oopsshappy").style.display = "none";
+			document.getElementById("box1").innerHTML = "" ;
+			document.getElementById("box2").innerHTML = "" ;
+			document.getElementById("box3").innerHTML = "" ;
+			document.getElementById("box4").innerHTML = "" ;
+			document.getElementById("box5").innerHTML = "" ;
+			document.getElementById("box6").innerHTML = "" ;
+			document.getElementById("box7").innerHTML = "" ;
+			document.getElementById("box8").innerHTML = "" ;
+			document.getElementById("box9").innerHTML = "" ;
+			document.getElementById("turn").innerHTML = "Player 1" ;
+			document.getElementById("res").innerHTML = "To Be Decided";
+
+			document.getElementById("box7").style.background='yellow';
+			document.getElementById("box5").style.background='yellow';
+			document.getElementById("box3").style.background='yellow';
+			document.getElementById("box1").style.background='yellow';
+			document.getElementById("box2").style.background='yellow';
+			document.getElementById("box4").style.background='yellow';
+			document.getElementById("box6").style.background='yellow';
+			document.getElementById("box8").style.background='yellow';
+			document.getElementById("box9").style.background='yellow';
+
+			document.getElementById("box1").value = "" ;
+			document.getElementById("box2").value = "" ;
+			document.getElementById("box3").value = "" ;
+			document.getElementById("box4").value = "" ;
+			document.getElementById("box5").value = "" ;
+			document.getElementById("box6").value = "" ;
+			document.getElementById("box7").value = "" ;
+			document.getElementById("box8").value = "" ;
+			document.getElementById("box9").value = "" ;
+			window.decider = 0;
+			window.i = 0;
+			document.getElementById("box1").style.hover = "lightyellow"
+			
+		}
+		function no(){
+			window.open("FULL TIC TAC TOE.html")
+			document.getElementById("oopss").style.display = "none";
+			document.getElementById("oopsshappy").style.display = "none";
+		}
+
+	</script>
+
+</body>
+</html>
